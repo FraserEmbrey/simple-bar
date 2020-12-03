@@ -18,6 +18,7 @@ const renderName = (name) => {
   if (!name) return ''
   if (name === 'with an AirPort network. y off.') return 'Disabled'
   if (name === 'with an AirPort network.') return 'Searching...'
+  if (name === 'BTHub6-KJ3Q') return 'Home'
   return name
 }
 

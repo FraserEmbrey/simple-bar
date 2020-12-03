@@ -23,6 +23,7 @@ const Mic = ({ output }) => {
   if (volume === 'missing value') return null
 
   const Icon = volume !== '0' ? MicOnIcon : MicOffIcon
+  const displayValue = volume !== '0' ? <span style={{ marginRight: `4px` }}>{volume + '%'}</span> : ''
 
   const onClick = (e) => {
     clickEffect(e)
@@ -32,7 +33,7 @@ const Mic = ({ output }) => {
   return (
     <div className="mic" onClick={onClick}>
       <Icon className="mic__icon" />
-      {volume}%
+      {displayValue}
     </div>
   )
 }
