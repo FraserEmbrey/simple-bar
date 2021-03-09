@@ -90,13 +90,13 @@ const render = ({ output, error }) => {
       <BrowserTrack output={{ ...browserTrack, spotifyStatus: spotify.spotifyIsRunning }} />
       <Spotify output={spotify} />
       <Music output={music} />
+      <Weather output={weather} />
       <Battery output={battery} />
       <Mic output={mic} />
       <Sound output={sound} />
       <VPN output={vpn} vpnConnectionName={vpnConnectionName} />
       <Wifi output={wifi} networkDevice={networkDevice} />
       <Keyboard output={keyboard} />
-      <Weather output={weather} />
       <DateDisplay />
       <Time />
     </div>
