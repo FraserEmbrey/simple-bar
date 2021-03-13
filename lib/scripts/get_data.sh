@@ -11,10 +11,20 @@ contains() {
   fi
 }
 
+ZOOM_MIC=""
+ZOOM_VIDEO=""
+if contains "$ACTIVE_WIDGETS" "zoomWidget"; then
+  ZOOM_MIC=$(osascript ./simple-bar/lib/scripts/zoom-mute-status.scpt)
+  ZOOM_VIDEO=$(osascript ./simple-bar/lib/scripts/zoom-video-status.scpt)
+fi
+
 WEATHER="{}"
 if contains "$ACTIVE_WIDGETS" "weatherWidget"; then
   if [ "$WEATHER_LOCATION" != "" ]; then
     WEATHER=$(curl -s "wttr.in/$WEATHER_LOCATION?format=j1" 2>/dev/null || echo "{}")
+    if contains "$WEATHER" "Unknown"; then 
+      WEATHER="{}"
+    fi
   fi
 fi
 
@@ -102,6 +112,10 @@ echo $(cat <<-EOF
       "percentage": "$BATTERY_PERCENTAGE",
       "charging": "$BATTERY_CHARGING",
       "caffeinate": "$CAFFEINATE_PID"
+    },
+    "zoom": {
+      "mic": "$ZOOM_MIC",
+      "video": "$ZOOM_VIDEO"
     },
     "vpn": {
       "status": "$VPN_STATUS"
